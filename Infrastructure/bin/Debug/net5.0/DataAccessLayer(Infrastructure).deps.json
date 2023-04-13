@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "DataAccessLayer(Infrastructure)/1.0.0": {
+        "runtime": {
+          "DataAccessLayer(Infrastructure).dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DataAccessLayer(Infrastructure)/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

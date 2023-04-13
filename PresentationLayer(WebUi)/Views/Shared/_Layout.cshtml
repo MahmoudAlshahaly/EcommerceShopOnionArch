@@ -1,0 +1,287 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Store - shop</title>
+    <link rel="stylesheet" href="~/style.css" />
+    <script src="~/script.js" defer="defer"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:ital,wght@0,500;0,700;1,400;1,500&display=swap"
+          rel="stylesheet" />
+
+    <!--Datatables -->
+    <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"
+          rel="stylesheet" />
+    <!--Responsive Extension Datatables CSS-->
+    <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css"
+          rel="stylesheet" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+          integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="~/adminTable.css" />
+   
+</head>
+<body>
+    <!-- header -->
+    <header class="py-4 shadow-sm">
+        <div class="container flex items-center justify-between">
+            <!-- 1-logo -->
+            <a href="#">
+                <img src="~/img/iti-logo.png" alt="LOGO-IMG" class="h-20" />
+            </a>
+            @if (User.IsInRole("User"))
+            {
+                <!-- 2-searchBar-Desktop -->
+                <form asp-action="Search" asp-controller="Product" method="post">
+                    <div class="hidden w-full max-w-xl relative lg:flex">
+                        <span class="absolute left-4 top-3 text-lg text-gray-400">
+                            <i class="fas fa-search"></i>
+                        </span>
+                        <input type="text"
+                               name="name"
+                               class="w-full border border-primary border-r-0 pl-12 py-3 pr-3 rounded-1-md focus:outline-none"
+                               placeholder="Search..." />
+                        <input type="submit" value="Search" class="bg-primary border border-primary text-white px-8 rounded-r-md hover:bg-transparent hover:text-primary transition" />
+                    </div>
+                </form>
+
+                <div class="flex items-center space-x-10">
+                    <a href="/FavoriteProduct/FavoriteForUser"
+                       class="text-gray-700 hover:text-primary transition relative flex flex-col items-center">
+                        <div class="text-2xl">
+                            <i class="far fa-heart"></i>
+                        </div>
+                        <div class="text-xs leading-3">Wish List</div>
+                        <span class="absolute right-0 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
+                    </a>
+                    <a href="/Home/Cart"
+                       class="text-gray-700 hover:text-primary transition relative flex flex-col items-center">
+                        <div class="text-2xl">
+                            <i class="fas fa-shopping-bag"></i>
+                        </div>
+                        <div class="text-xs leading-3">Cart</div>
+                        <span class="absolute -right-3 -top-1 w-5 h-5 rounded-full flex items-center justify-center bg-primary text-white text-xs">8</span>
+                    </a>
+                    <a href="~/userAccount.html"
+                       class="text-gray-700 hover:text-primary transition relative flex flex-col items-center">
+                        <div class="text-2xl">
+                            <i class="far fa-user"></i>
+                        </div>
+                        @User.Identity.Name
+                        <div class="text-xs leading-3">Account</div>
+                    </a>
+                </div>
+            }
+        </div>
+        <!--  -->
+        <!-- *-searchBar-Mobile -->
+        <div class="flex justify-center lg:hidden">
+            <div class="relative sm:flex mt-2">
+                <span class="absolute left-4 top-2 text-sm text-gray-400">
+                    <i class="fas fa-search"></i>
+                </span>
+                <input type="text"
+                       class="border border-primary border-r-0 pl-12 py-1 pr-3 rounded-1-md focus:outline-none"
+                       placeholder="Search..." />
+                <button class="bg-primary border border-primary text-white py-1 px-4 rounded-r-md hover:bg-transparent hover:text-primary transition">
+                    Search
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+    <!-- navbar -->
+    <nav class="bg-gray-800">
+        <div class="container flex flex-col lg:flex-row justify-start items-start lg:items-center">
+            @if (User.IsInRole("Admin"))
+            {
+                <!-- all category -->
+                <div class="rounded-md px-4 my-2 py-1.5 lg:px-8 lg:py-4 bg-primary flex items-center cursor-pointer relative group">
+                    <span class="text-white"><i class="fas fa-bars"> </i></span>
+                    <span class="capitalize ml-2 text-white">Admin Panel</span>
+                    <div class="Class Properties z-0 z-index: 0; z-10 z-index: 10; z-20 z-index: 20; z-30 z-index: 30; z-40 z-index: 40; z-50 rounded-md absolute w-full left-0 top-full bg-white shadow-md py-3 divide-y divide-gray-300 divide-dashed opacity-0 invisible group-hover:opacity-100 transition duration-400 group-hover:visible">
+                        <a href="/Category/index"
+                           class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                            <i class="fa-regular fa-laptop text-primary"></i>
+                            <span class="ml-6 text-gray-600 text-sm">Categories</span>
+                        </a>
+                        <a href="/Brand/Index"
+                           class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                            <i class="fa-regular fa-laptop text-primary"></i>
+                            <span class="ml-6 text-gray-600 text-sm">Brands</span>
+                        </a>
+                        <a href="/Product/Index"
+                           class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                            <i class="fa-regular fa-laptop text-primary"></i>
+                            <span class="ml-6 text-gray-600 text-sm">Products</span>
+                        </a>
+                        <a href="/ComplaintAndSuggestion/Index"
+                           class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                            <i class="fa-regular fa-laptop text-primary"></i>
+                            <span class="ml-6 text-gray-600 text-sm">Complaints</span>
+                        </a>
+                        <a href="/Order/Index"
+                           class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                            <i class="fa-regular fa-laptop text-primary"></i>
+                            <span class="ml-6 text-gray-600 text-sm">Orders</span>
+                        </a>
+                        <a href="/Order/Index"
+                           class="flex items-center px-6 py-3 hover:bg-gray-100 transition">
+                            <i class="fa-regular fa-laptop text-primary"></i>
+                            <span class="ml-6 text-gray-600 text-sm">Role</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- all category-end -->
+            }
+
+                <!-- navbar links -->
+                <!-- navbar links -->
+                <div class="flex items-center justify-between flex-grow space-x-4 pb-2 lg:pb-0 lg:pl-12">
+                    <div class="flex items-center space-x-6 capitalize">
+                        <a href="/Home/Index"
+                           class="text-xs lg:text-lg text-gray-200 hover:text-white transition">Home</a>
+                        <a href="#"
+                           class="text-xs lg:text-lg text-gray-200 hover:text-white transition">About us</a>
+                        <a href="/ComplaintAndSuggestion/Create"
+                           class="text-xs lg:text-lg text-gray-200 hover:text-white transition">Complaint</a>
+                    </div>
+                    <a href="/Account/Login"
+                       class="text-xs lg:text-lg text-gray-200 hover:text-white transition">Login/Register</a>
+                </div>
+            </div>
+    </nav>
+    <!-- navbar-end-->
+
+    <div>
+        @RenderBody()
+    </div>
+    <!-- footer -->
+    <div class="bg-white pt-16 pb-12 border-t border-gray-100">
+        <div class="container grid grid-cols-3">
+            <!-- footer text -->
+            <div class="col-span-1 space-y-8">
+                <img src="~/img/iti-logo.png" alt="LOGO-IMG" class="h-20" />
+                <p class="text-gray-500">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                </p>
+                <div class="flex space-x-3 md:space-x-6 lg:space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-gray-500">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <!-- footer text-end -->
+            <!-- footer links -->
+            <div class="col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- first-col -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+                            Solutions
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Marketing</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Analytics</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Commerce</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Insights</a>
+                        </div>
+                    </div>
+                    <!-- first-col-end -->
+                    <!-- second-col-->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+                            Support
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Pricing</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Documentation</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Guides</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">API Status</a>
+                        </div>
+                    </div>
+                    <!-- second-col-end -->
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- third-col -->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+                            company
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">About</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Blog</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Jobs</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Press</a>
+                        </div>
+                    </div>
+                    <!-- third-col-end -->
+                    <!-- forth-col-->
+                    <div>
+                        <h3 class="text-sm font-semibold text-gray-400 uppercase tracking-wider">
+                            Legal
+                        </h3>
+                        <div class="mt-4 space-y-4">
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Claim</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Privacy</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Policy</a>
+                            <a href="#"
+                               class="text-gray-500 hover:text-gray-900 block">Terms</a>
+                        </div>
+                    </div>
+                    <!-- second-col-end -->
+                </div>
+            </div>
+            <!-- footer links-end -->
+        </div>
+    </div>
+    <!-- footer-end-->
+    <!-- copyRight -->
+    <div class="bg-gray-800 py-4">
+        <div class="container flex items-center justify-between">
+            <p class="text-white">© TEAM 4 - All Rights Reserved</p>
+            <img src="~/img/iti-logo.png" class="h-10" alt="" />
+        </div>
+    </div>
+    <script src="~/product-detail.js" defer="defer"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="text/javascript"
+            src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/adminTable.js" defer="defer"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+
+    <!-- copyRight-end -->
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

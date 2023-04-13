@@ -1,0 +1,81 @@
+﻿@model SharedLayer.Domain.ViewModels.ProductVM
+
+@{
+    ViewData["Title"] = "DetailsForAdmin";
+}
+
+<!-- product view -->
+<div class="container flex gap-6 flex-wrap">
+
+    <!--  product image -->
+    <div class="w-[320px] sm:w-[420px] md:lg:w-[510px] lg:w-[510px]">
+        <img id="mainImage"
+             src="~/img/@Model.imageurl"
+             alt="product-image"
+             class="" />
+        <div id="imgWrapper" class="flex justify-center gap-0 sm:gap-2 lg:gap-8 mt-4 w-full">
+            @{
+                int index = 1;
+            }
+            @foreach (var item in Model.ProductImage)
+            {
+                <button class="smallImageBtn-@index">
+                    <img src="~/img/@item.imageurl"
+                         alt="product-images"
+                         class="min-w-[80px] max-h-20 sm:min-w-[96px] sm:max-h-20 lg:min-w-[100px] lg:h-24 cursor-pointer border" />
+                </button>
+
+                index++;
+            }
+        </div>
+    </div>
+    <!-- product image-end -->
+    <!-- product content -->
+    <div w-[400px]>
+        <h2 class="text-3xl font-medium uppercase mb-2">
+            @Model.name
+        </h2>
+        <div class="flex items-center mb-4">
+            <div class="text-xs text-gray-500 ml-3">(@Model.Reviews.Count() reviews)</div>
+        </div>
+        <div class="space-y-2">
+            <p class="text-gray-800 font-semibold space-x-2">
+                <span>Availability:</span>
+                <span class="text-green-600">( @Model.quantityavailable ) In Stock</span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">Brand:</span>
+                <span class="text-gray-600">@Model?.Brand.name</span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">Category:</span>
+                <span class="text-gray-600">@Model?.Category.name</span>
+            </p>
+        </div>
+        <!-- price -->
+        <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
+            <p class="text-2xl text-primary font-semibold">$@Model.saleprice</p>
+            @* <p class="text-base text-gray-400 line-through">$55.00</p>*@
+        </div>
+        <!-- price-end -->
+        <!-- description -->
+        <p class="mt-4 text-gray-600 w-80 sm:w-96">
+            @Model.description
+        </p>
+        <!-- description-end -->
+        <!-- quantity -->
+        <div class="mt-4">
+        </div>
+        <!-- quantity-end -->
+        <!-- add to cart btn -->
+        <div class="flex gap-3 pb-5 mt-6">
+            <a href="/Product/index"
+               class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-opacity-0 hover:text-primary transition">
+                All Product
+            </a>
+        </div>
+        <!-- add to cart btn-end -->
+    </div>
+    <!-- product content-end -->
+</div>
+<!-- product view-end -->

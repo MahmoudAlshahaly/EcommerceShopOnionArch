@@ -1,0 +1,98 @@
+﻿@model SharedLayer.Domain.ViewModels.CategoryVM
+<!-- shop wrapper -->
+<div class="container grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 md:gap-6 lg:gap-6 pt-4 pb-16 items-start">
+    <!-- sidebar -->
+    <div class="col-span-1 cg-white px-4 lg:px-4 lg:px-4 pb-6 w-36 md:w-52 lg:w-56 shadow rounded overflow-hidden">
+        <div class="divide-y divide-gray-200 space-y-5">
+            <!-- category filter -->
+            <div>
+                <h3 class="text-md lg:text-xl text-gray-800 uppercase py-2 font-medium">
+                    categories
+                </h3>
+                <div class="space-y-4 divide divide-y">
+                    <!--category-productsr-->
+
+                        <!-- single category -->
+                        <div class="flex items-center pt-4">
+                            <a href="/Category/Details/@Model.id" class="text-gray-600 ml-1 md:ml-3 lg:ml-3 cursor-pointer hover:text-primary">
+                                @Model.name
+                            </a>
+                        </div>
+                        <!-- single category-end -->
+                    
+                </div>
+            </div>
+            <!-- category filter-end -->
+            <!-- brand filter -->
+            <div class="pt-2">
+                <div>
+                    <h3 class="text-md lg:text-xl text-gray-800 uppercase py-2 font-medium">
+                        brands
+                    </h3>
+                    <div class="space-y-2">
+                        <!-- single brand -->
+                        <div class="flex items-center">
+                            <input type="checkbox"
+                                   id="brand-1"
+                                   class="focus:ring-0 rounded-sm cursor-pointer"
+                                   style="accent-color: #fd3d57" />
+                            <label for="brand-1"
+                                   class="text-gray-600 ml-1 md:ml-3 lg:ml-3 cursor-pointer">brand1</label>
+                            <div class="ml-1 md:ml-auto lg:ml-auto text-gray-600 text-sm">
+                                (15)
+                            </div>
+                        </div>
+                        <!-- single brand-end -->
+                    </div>
+                </div>
+            </div>
+            <!-- brand filter-end -->
+            <!-- price filter -->
+            <div class="pt-2">
+                <h3 class="text-md lg:text-xl text-gray-800 mb-3 uppercase font-medium">
+                    price
+                </h3>
+                <div class="mt-4 flex items-center">
+                    <input id="priceFilter"
+                           type="text"
+                           placeholder="min"
+                           class="w-full border rounded border-gray-300 focus:ring-0 focus:outline-none px-3 py-1 text-gray-600 text-sm shadow-sm" />
+                    <span class="mx-3 text-gray-500">-</span>
+                    <input id="priceFilter"
+                           type="text"
+                           placeholder="max"
+                           class="w-full border rounded border-gray-300 focus:ring-0 focus:outline-none px-3 py-1 text-gray-600 text-sm shadow-sm" />
+                </div>
+            </div>
+            <!-- price filter-end -->
+        </div>
+    </div>
+    <!-- sidebar-end -->
+    <!-- product -->
+    <div class="col-span-1 md:col-span-2 lg:col-span-3">
+        <!-- sorting -->
+        @*<div class="flex items-center mb-4">
+                <select class="w-44 text-gray-600 px-4 py-3 border-gray-300 shadow-sm rounded focus:ring-primary focus:outline-none">
+                    <option value="">Default sorting</option>
+                    <option value="">price low-high</option>
+                    <option value="">price high-low</option>
+                    <option value="">Latest products</option>
+                </select>
+                <div class="flex gap-2 ml-auto"></div>
+            </div>*@
+        <!-- sorting-end -->
+        <!-- product grid -->
+        <div class="flex justify-center">
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-28">
+                <!-- single product -->
+
+                    <partial name="_ProductPartial" model="@Model.Products" />
+                
+            </div>
+        </div>
+        <!-- product grid-end -->
+
+    </div>
+    <!-- product-end -->
+</div>
+<!-- shop wrapper-end -->

@@ -1,0 +1,108 @@
+﻿@model SharedLayer.Domain.ViewModels.ProductVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="container py-16">
+    <div class="mx-auto shadow px-6 py-7 rounded overflow-hidden">
+        <h2 class="text-2xl text-center uppercase font-medium mb-6">
+            Add Product
+        </h2>
+
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="space-y-4">
+                <div>
+                    <label for="name"
+                           class="text-gray-600 mb-2 block">
+                        Product Name
+                        <span class="text-primary">*</span>
+                    </label><input id="name"
+                                   name="name"
+                                   type="text"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter Product Name " />
+                </div>
+
+                <div>
+                    <label for="description"
+                           class="text-gray-600 mb-2 block">
+                        Description
+                    </label>
+                    <textarea id="description"
+                              name="description"
+                              type="text-area"
+                              class="inputForm block w-full border border-gray-300 px-4 py-8 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                              placeholder="Enter Description"></textarea>
+                </div>
+                <div>
+                    <label for="saleprice" class="text-gray-600 mb-2 block">
+                        Sale Price
+                        <span class="text-primary">*</span>
+                    </label><input id="saleprice"
+                                   name="saleprice"
+                                   type="number"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter Sale Price " />
+                </div>
+                <div>
+                    <label for="buyprice" class="text-gray-600 mb-2 block">
+                        Buy Price
+                        <span class="text-primary">*</span>
+                    </label><input id="buyprice"
+                                   name="buyprice"
+                                   type="number"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter Buy Price " />
+                </div>
+                <div>
+                    <label for="quantityavailable"
+                           class="text-gray-600 mb-2 block">
+                        quantity
+                        <span class="text-primary">*</span>
+                    </label><input id="quantityavailable"
+                                   name="quantityavailable"
+                                   type="number"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter the Quantity " />
+                </div>
+                <div>
+
+                    <span class="text-primary">*</span>
+                    <label asp-for="Brandid" class="text-gray-600 mb-2 block"> Product Brand </label>
+                    <select asp-for="Brandid" name="Brandid" class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                            asp-items="@(new SelectList(Model.Brands,"id","name"))"> </select>
+
+                </div>
+                <div>
+
+                    <span class="text-primary">*</span>
+                    <label asp-for="Categoryid" class="text-gray-600 mb-2 block"> Product Category </label>
+                    <select asp-for="Categoryid" name="Categoryid" class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                            asp-items="@(new SelectList(Model.Categories,"id","name"))"> </select>
+
+                </div>
+                <div>
+                    <label for="imageUpload"
+                           class="text-gray-600 mb-2 block">
+                        Product Images
+                        <span class="text-primary">*</span>
+                    </label>
+                    <input type="file" asp-for="files" name="files" multiple class="bg-gray-100 rounded rounded-6 p-2 text-gray-800 cursor-pointer hover:bg-white border border-gray-200" />
+                </div>
+                @*<div>
+                <label for="from"
+                       class="bg-gray-100 p-1 md:p-2 rounded">date :</label>
+                <input id="from"
+                       type="date"
+                       class="p-1 md:p-2 focus:outline-none bg-gray-100 rounded" />
+            </div>*@
+            </div>
+            <div class="mt-4">
+                <input type="submit" value="Create"
+                       class="bolck w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium" />
+
+            </div>
+        </form>
+    </div>
+</div>

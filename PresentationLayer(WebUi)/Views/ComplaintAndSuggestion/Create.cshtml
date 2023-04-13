@@ -1,0 +1,55 @@
+﻿@model SharedLayer.Domain.ViewModels.ComplaintAndSuggestionVM
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<!-- account wrapper -->
+<div class="container grid grid-cols-12 items-start gap-3 md:gap-5 pt-4 pb-16">
+    <!-- profile info -->
+    <div class="col-span-12 shadow rounded px-6 pt-5 pb-7">
+        <h4 class="text-lg font-medium capitlize mb-4">
+            Tell us your complaint
+        </h4>
+        <div class="space-y-8">
+            <!--  form row -->
+            <form asp-action="Create" asp-controller="ComplaintAndSuggestion" method="post">
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- single input -->
+                    <div>
+                        <label for="subject" class="text-gray-600 mb-2 block">subject</label>
+                        <input id="subject"
+                               name="subject"
+                               type="text"
+                               class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                               placeholder="subject " />
+                    </div>
+                    <!-- single input-end -->
+                    <!-- single input -->
+                </div>
+                <div class="grid grid-cols-1 gap-4">
+                    <!-- single input -->
+                    <label for="message" class="text-gray-600 mb-2 block">complaint</label>
+                    <textarea id="message"
+                              name="message"
+                              type="text-area"
+                              class="inputForm block w-full border border-gray-300 px-4 py-8 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                              placeholder="complaint"></textarea>
+                    <!-- single input-end -->
+                </div>
+                <button type="submit"
+                        class="bolck w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                    send
+                </button>
+                <!--  form row-end-->
+            </form>
+        </div>
+    </div>
+
+    <!-- profile info-end -->
+</div>
+<!-- account wrapper-end -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

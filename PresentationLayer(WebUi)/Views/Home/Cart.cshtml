@@ -1,0 +1,139 @@
+﻿@model IEnumerable<SharedLayer.Domain.ViewModels.CartVM>
+
+    <!-- cart -->
+    <div class="bg-gray-100 py-8">
+        <div class="container mx-auto mt-10">
+            <div class="flex flex-wrap shadow-md my-10">
+                <!-- left side -->
+                <div class="lg:w-3/4 bg-white px-10 py-10">
+                    <div class="flex justify-between border-b pb-8">
+                        <h1 class="font-semibold text-2xl">
+                            Shopping Cart
+                        </h1>
+                        <h2 class="font-semibold text-2xl">3 Items</h2>
+                    </div>
+
+                    <!-- head names -->
+                    <div class="flex mt-10 mb-5">
+                        <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">
+                            Product Details
+                        </h3>
+                        <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+                            Quantity
+                        </h3>
+                        <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+                            Price
+                        </h3>
+                        <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
+                            Total
+                        </h3>
+                    </div>
+                    <!-- head names-end -->
+                    @{
+                        decimal total = 0;
+                        decimal totalOrder = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <!-- single product -->
+                        <div class="flex items-center hover:bg-gray-100 -mx-8 px-1 md:px-6 py-5">
+                            <div class="flex w-2/5">
+                                <!-- product-image -->
+                                <div class="w-20">
+                                    <img class="h-24"
+                                         src="~/img/@item.Product.imageurl"
+                                         alt="" />
+                                </div>
+                                <!-- product-name -->
+                                <div class="flex flex-col justify-between ml-4 flex-grow">
+                                    <span class="font-bold text-sm">@item.Product.name</span>
+                                    <a href="/FavoriteProduct/Delete/@item.id">
+                                        <div class="text-gray-600 cursor-pointer hover:text-primary">
+                                            <i class="fas fa-trash"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- product-quantity -->
+                            <div class="flex items-center justify-center w-1/5">
+                                <a href="/Home/MinusFromCart/@item.Productid">
+                                    <span class="cursor-pointer">
+                                        <svg class="fill-current text-gray-600 w-2 lg:w-3"
+                                             viewBox="0 0 448 512">
+                                            <path d="M416 208H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h384c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                                        </svg>
+                                    </span>
+                                </a>
+                                <input class="mx-1 md:mx-2 border text-center w-4 md:w-8 focus:outline-none"
+                                       type="text"
+                                       value="@Math.Round(item.quantity,1)" />
+                                <a href="/Home/PLusToCart/@item.Productid">
+                                    <span class="cursor-pointer">
+                                        <svg class="fill-current text-gray-600 w-2 lg:w-3"
+                                             viewBox="0 0 448 512">
+                                            <path d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z" />
+                                        </svg>
+                                    </span>
+                                </a>
+
+                            </div>
+                            <!-- product-single price -->
+                            <span class="text-center w-1/5 font-semibold text-sm">$ @item.Product.saleprice</span>
+                            <!-- product-total price -->
+                            @{
+                                total = @Math.Round((@item.quantity * @item.Product.saleprice), 2);
+                                totalOrder += total;
+                            }
+                            <span class="text-center w-1/5 text-primary text-sm md:text-lg font-semibold p-2">$ @total</span>
+                        </div>
+                        <!-- single product-end -->
+                    }
+                    <a href="/Home/index"
+                       class="flex font-semibold text-primary text-sm mt-10">
+                        <svg class="fill-current mr-2 text-primary w-4"
+                             viewBox="0 0 448 512">
+                            <path d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z" />
+                        </svg>
+                        Continue Shopping
+                    </a>
+                </div>
+                <!-- left side-end -->
+                <!-- right side -->
+                <div id="summary" class="lg:w-1/4 px-8 py-10">
+                    <h1 class="font-semibold text-2xl border-b pb-8">
+                        Order Summary
+                    </h1>
+                    <div class="flex justify-between mt-10 mb-5">
+                        <span class="font-semibold text-sm uppercase">Total Items </span>
+                        <span class="font-semibold text-sm">@Model.Count()</span>
+                    </div>
+                    <form asp-controller="Home" asp-action="CheckOutOrder" method="post">
+                        <div class="py-4">
+                            <label for="total"
+                                   class="font-semibold inline-block mb-3 text-sm uppercase">Total cost Before Tax</label>
+                            $<input input type="text" name="total" value="@totalOrder"
+                                    class="p-2 text-sm w-full focus:outline-none rounded inputForm" />
+                        </div>
+                        <div class="py-2">
+                            <label for="total"
+                                   class="font-semibold inline-block mb-3 text-sm uppercase">Total Tax</label>
+                            $<input input type="text" name="tax" value="@(15 * totalOrder/100)"
+                                    class="p-2 text-sm w-full focus:outline-none rounded inputForm" />
+                        </div>
+                        <div class="py-2">
+                            <label for="total"
+                                   class="font-semibold inline-block mb-3 text-sm uppercase">Total cost After Tax</label>
+                            $<input input type="text" name="totalAfter" value="@((15 * totalOrder/100)+totalOrder)"
+                                    class="p-2 text-sm w-full focus:outline-none rounded inputForm" />
+                        </div>
+                        <div class="border-t mt-4">
+                            <input type="submit" value="Checkout" class="bg-primary font-semibold hover:bg-white py-3 text-sm text-white hover:text-primary border border-primary rounded uppercase w-full">
+                        </div>
+                    </form>
+                </div>
+                <!-- right side-end -->
+            </div>
+        </div>
+    </div>
+
+    <!-- cart-end -->

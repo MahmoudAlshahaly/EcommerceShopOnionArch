@@ -1,0 +1,37 @@
+﻿@model SharedLayer.Domain.ViewModels.BrandVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container py-16">
+    <div class="mx-auto shadow px-6 py-7 rounded overflow-hidden">
+        <h2 class="text-2xl text-center uppercase font-medium mb-6">
+            Add Brand
+        </h2>
+
+        <form asp-action="Edit">
+            <div class="space-y-4">
+                <div>
+                    <label for="name"
+                           class="text-gray-600 mb-2 block">
+                        Brand Name
+                        <span class="text-primary">*</span>
+                    </label><input id="name"
+                                   asp-for="name"
+                                   type="text"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter Brand Name " />
+                </div>
+            </div>
+            <div class="mt-4">
+                <input type="submit" value="Edit"
+                        class="bolck w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"/>
+                    
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

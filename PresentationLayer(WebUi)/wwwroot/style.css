@@ -1,0 +1,160 @@
+/* slider */
+#slider {
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+
+    display: none;
+    animation-name: fade;
+    animation-duration: 1s;
+}
+#img_slide {
+    width: 100%;
+}
+@keyframes fade {
+    from {
+        opacity: 0.5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.controls {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    padding: 15px 10px;
+    border-radius: 5px;
+}
+
+.controls:hover {
+    background: white;
+    transition: 0.3s;
+    opacity: 50%;
+    border-radius: 30px;
+}
+
+.controls:active {
+    color: grey;
+}
+
+#left-arrow {
+    left: 10px;
+}
+
+#right-arrow {
+    right: 10px;
+}
+
+#dots-con {
+    text-align: center;
+}
+.dot {
+    display: inline-block;
+    background: grey;
+    padding: 8px;
+    border-radius: 50%;
+    margin: 10px 5px;
+}
+
+/* .active {
+    background: #fd3d57;
+} */
+
+@media (max-width: 576px) {
+    #slider {
+        width: 100%;
+    }
+
+    .controls {
+        font-size: 1em;
+    }
+
+    #dots-con {
+        display: none;
+    }
+}
+/* slider-end */
+
+/* shop page */
+#priceFilter:focus {
+    border-color: #fd3d57;
+}
+/* shop page-end */
+
+/* form */
+.inputForm:focus {
+    border-color: #fd3d57;
+}
+/* form-end */
+
+/* review */
+/* .rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    display: none;
+}
+.rate:not(:checked) > label {
+    float: right;
+    width: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+.rate:not(:checked) > label:before {
+    content: "★ ";
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+} */
+/* review-end */
+
+/* cart */
+#summary {
+    background-color: #f6f6f6;
+}
+/* cart-end */
+#mainImage {
+    width: 510px;
+    height: 400px;
+}
+
+#stars {
+    width: 1em;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 30px;
+    color: #ccc;
+}
+#stars:hover a {
+    color: #ffc700;
+}
+#stars a:hover ~ a {
+    color: #ccc;
+}
+.active {
+    color: #ffc700;
+}

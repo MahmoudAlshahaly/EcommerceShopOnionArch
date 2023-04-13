@@ -1,0 +1,241 @@
+﻿@model SharedLayer.Domain.ViewModels.ProductVM
+
+@{
+    ViewData["Title"] = "Details";
+    var rating = Convert.ToInt32(ViewData["Rating"]);
+}
+
+
+<!-- breadcrums -->
+<div class="container py-4 flex items-center gap-3">
+    <button href="index.html" class="text-primary text-base">
+        <i class="fas fa-home"></i>
+    </button>
+    <span class="text-sm text-gray-400">
+        <i class="fas fa-chevron-right"></i>
+    </span>
+    <a href="#" class="text-primary font-medium">Shop</a>
+    <span class="text-sm text-gray-400">
+        <i class="fas fa-chevron-right"></i>
+    </span>
+    <p class="font-medium text-gray-600">@Model.name</p>
+    @if (Model.isFavorite)
+    {
+        <i class="fa fa-heart text-red-500"></i>
+    }
+    else
+    {
+        <i class="fa fa-heart"></i>
+    }
+</div>
+<!-- breadcrums-end -->
+<!-- product view -->
+<div class="container flex gap-6 flex-wrap">
+
+    <!--  product image -->
+    <div class="w-[320px] sm:w-[420px] md:lg:w-[510px] lg:w-[510px]">
+        <img id="mainImage"
+             src="~/img/@Model.imageurl"
+             alt="product-image"
+             class="" />
+        <div id="imgWrapper" class="flex justify-center gap-0 sm:gap-2 lg:gap-8 mt-4 w-full">
+            @{
+                int index = 1;
+            }
+            @foreach (var item in Model.ProductImage)
+            {
+                <button class="smallImageBtn-@index">
+                    <img src="~/img/@item.imageurl"
+                         alt="product-images"
+                         class="min-w-[80px] max-h-20 sm:min-w-[96px] sm:max-h-20 lg:min-w-[100px] lg:h-24 cursor-pointer border" />
+                </button>
+
+                index++;
+            }
+        </div>
+    </div>
+    <!-- product image-end -->
+    <!-- product content -->
+    <div w-[400px]>
+        <h2 class="text-3xl font-medium uppercase mb-2">
+            @Model.name
+        </h2>
+        <div class="flex items-center mb-4">
+            <div class="flex gap-1 text-sm text-gray-400">
+                @for (int i = 0; i < rating; i++)
+                {
+                    <span><i class="fas fa-star text-yellow-400"></i></span>
+                }
+                @for (int i = 0; i < 5 - rating; i++)
+                {
+                    <span><i class="fas fa-star"></i></span>
+                }
+            </div>
+            <div class="text-xs text-gray-500 ml-3">(@Model.Reviews.Count() reviews)</div>
+        </div>
+        <div class="space-y-2">
+            <p class="text-gray-800 font-semibold space-x-2">
+                <span>Availability:</span>
+                <span class="text-green-600">( @Model.quantityavailable ) In Stock</span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">Brand:</span>
+                <span class="text-gray-600">@Model?.Brand.name</span>
+            </p>
+            <p class="space-x-2">
+                <span class="text-gray-800 font-semibold">Category:</span>
+                <span class="text-gray-600">@Model?.Category.name</span>
+            </p>
+        </div>
+        <!-- price -->
+        <div class="flex items-baseline mb-1 space-x-2 font-roboto mt-4">
+            <p class="text-2xl text-primary font-semibold">$@Model.saleprice</p>
+            @* <p class="text-base text-gray-400 line-through">$55.00</p>*@
+        </div>
+        <!-- price-end -->
+        <!-- description -->
+        <p class="mt-4 text-gray-600 w-80 sm:w-96">
+            @Model.description
+        </p>
+        <!-- description-end -->
+        <!-- quantity -->
+        <div class="mt-4">
+            @*<div class="flex border rounded border-gray-300 text-gray-600 divide-x divide-gray-300 w-max">
+                    <div class="h-10 w-10 text-xl flex items-center justify-center cursor-pointer select-none hover:text-primary hover:bg-gray-400 hover:bg-opacity-10">
+                        -
+                    </div>
+                    <div class="h-10 w-10 text-base flex items-center justify-center">
+                        4
+                    </div>
+                    <div class="h-10 w-10 text-xl flex items-center justify-center cursor-pointer select-none hover:text-primary hover:bg-gray-400 hover:bg-opacity-10">
+                        +
+                    </div>
+                </div>*@
+        </div>
+        <!-- quantity-end -->
+        <!-- add to cart btn -->
+        <div class="flex gap-3 pb-5 mt-6">
+            <a href="/Home/AddToCart/@Model.id"
+               class="bg-primary border border-primary text-white px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:bg-opacity-0 hover:text-primary transition">
+                <i class="fas fa-shopping-bag"></i>Add to cart
+            </a>
+            <a href="/FavoriteProduct/AddToFavorite/@Model.id"
+               class="border border-gray-300 text-gray-600 px-8 py-2 font-medium rounded uppercase flex items-center gap-2 hover:text-primary transition">
+                <i class="fa fa-heart"></i>
+                Wishlist
+            </a>
+        </div>
+        <!-- add to cart btn-end -->
+    </div>
+    <!-- product content-end -->
+</div>
+<!-- product view-end -->
+
+
+
+<!-- product more detail -->
+<div class="container pb-16">
+    <h3 class="border-b border-gray-200 font roboto text-gray-800 pb-3 font-medium">
+        Product Details
+    </h3>
+    <div class="w-3/5 pt-6">
+        <!-- table -->
+        <table class="table-auto border-collapse w-full text-left text-gray-600 text-sm mt-6">
+            <tr>
+                <th class="py-2 px-4 border border-gray-300 w-40">
+                    Color
+                </th>
+                <th class="py-2 px-4 border border-gray-300 font-medium">
+                    Black, Brown, Red
+                </th>
+            </tr>
+        </table>
+        <!-- table-end -->
+    </div>
+</div>
+<!-- product more detail-end -->
+<!-- reviews -->
+<div class="container mb-8">
+    <h2 class="text-2xl font-medium text-gray-800 uppercase mb-6">
+        Reviews
+    </h2>
+    <div class="space-y-4">
+        @if (Model.Reviews.Any())
+        {
+            @foreach (var item in Model.Reviews)
+            {
+                <!-- single review -->
+                <div class="flex gap-6 shadow rounded p-4 bg-gray-100">
+                    <!-- left -->
+                    <img src="~/img/iti-logo.png"
+                         alt="user image"
+                         class="rounded-full w-8 h-8 lg:w-14 lg:h-14 border border-gray-200 lg:p-1 md:p-1 object-cover" />
+                    <!-- right -->
+                    <div>
+                        <div class="pb-2">
+                            <h3 class="block font-medium capitalize">
+                                @item.userid
+                            </h3>
+                            <div class="flex gap-1 text-sm text-gray-400">
+                                @for (int i = 0; i < item.rate; i++)
+                                {
+                                    <span><i class="fas fa-star text-yellow-400"></i></span>
+                                }
+                                @for (int i = 0; i < 5 - item.rate; i++)
+                                {
+                                    <span><i class="fas fa-star"></i></span>
+                                }
+                            </div>
+                        </div>
+
+                        <p>@item.comment</p>
+                        <p class="ml-4 text-xs text-gray-400">
+                            Published @item.date.Date
+                        </p>
+                        <div class="flex gap-4 items-center m-4">
+                            <i class="fa fa-thumbs-up text-blue-500 cursor-pointer"></i>
+                            <i class="fa fa-thumbs-down text-red-500 cursor-pointer"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- single review-end -->
+            }
+        }
+
+        <!-- add review -->
+        <form id="form" asp-controller="Review" asp-action="Create" method="post">
+            <h2 class="text-lg font-medium text-gray-800">
+                add review
+            </h2>
+            <div class="grid grid-cols-1 gap-4">
+                <div id="stars">
+                    <a>★</a>
+                    <a>★</a>
+                    <a>★</a>
+                    <a>★</a>
+                    <a>★</a>
+                </div>
+
+                <input type="hidden"
+                       id="rate"
+                       name="rate"
+                       value="0" />
+                <input type="hidden"
+                    id="productid"
+                    name="productid"
+                    value="@Model.id" />
+                <textarea name="comment" type="text-area"
+                          class="inputForm block w-full border border-gray-300 px-4 py-8 text-gray-600 text-lg rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                          placeholder="review"></textarea>
+                <button type="submit"
+                        class="bolck w-48 py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                    Post Comment
+                </button>
+            </div>
+
+            <!-- single input-end -->
+        </form>
+        <!-- add review-end -->
+    </div>
+</div>
+<!-- reviews-end -->

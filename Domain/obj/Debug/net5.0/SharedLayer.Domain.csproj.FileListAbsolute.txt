@@ -1,0 +1,11 @@
+E:\EcommerceShop\EcommerceShop\Domain\bin\Debug\net5.0\SharedLayer.Domain.deps.json
+E:\EcommerceShop\EcommerceShop\Domain\bin\Debug\net5.0\SharedLayer.Domain.dll
+E:\EcommerceShop\EcommerceShop\Domain\bin\Debug\net5.0\ref\SharedLayer.Domain.dll
+E:\EcommerceShop\EcommerceShop\Domain\bin\Debug\net5.0\SharedLayer.Domain.pdb
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\SharedLayer.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\SharedLayer.Domain.AssemblyInfoInputs.cache
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\SharedLayer.Domain.AssemblyInfo.cs
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\SharedLayer.Domain.csproj.CoreCompileInputs.cache
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\SharedLayer.Domain.dll
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\ref\SharedLayer.Domain.dll
+E:\EcommerceShop\EcommerceShop\Domain\obj\Debug\net5.0\SharedLayer.Domain.pdb

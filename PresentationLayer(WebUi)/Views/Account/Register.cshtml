@@ -1,0 +1,151 @@
+﻿@model SharedLayer.Domain.ViewModels.RegisterVM
+
+@{ ViewData["Title"] = "Register"; }
+
+<!-- register -->
+<div class=" ">
+    <div class="max-w-lg mx-auto shadow px-6 my-16 py-7 rounded overflow-hidden">
+        <h2 class="text-2xl text-center uppercase font-medium mb-6">
+            register
+        </h2>
+
+        <form asp-action="Register" asp-controller="Account" method="post" >
+            <div class="space-y-4">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label asp-for="UserName"
+                               class="text-gray-600 mb-2 block">
+                            User Name
+                            <span class="text-primary">*</span>
+                        </label>
+                        <input id="UserName"
+                               asp-for="UserName"
+                               type="text"
+                               class="inputForm focus:outline-none block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded placeholder-gray-400"
+                               placeholder="Enter your Name " />
+                    </div>
+                    <div>
+                        <label asp-for="Email"
+                               class="text-gray-600 mb-2 block">
+                            Email
+                            <span class="text-primary">*</span>
+                        </label>
+                        <input id="Email"
+                               asp-for="Email"
+                               type="Email"
+                               class="inputForm focus:outline-none block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded placeholder-gray-400"
+                               placeholder="Enter your Email " />
+                        @if (TempData.ContainsKey("Emailfound"))
+                        {
+                              <div class="text-danger">
+                                   @TempData["Emailfound"]
+                              </div>
+                        }
+                    </div>
+                </div>
+                <div>
+
+
+                    <div>
+                        <label asp-for="Password" class="text-gray-600 mb-2 block"> Password <span class="text-primary">*</span></label></label
+                        ><input asp-for="Password"
+                                id="Password"
+                                type="Password"
+                                class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                placeholder="Enter your Password " />
+                    </div>
+                    <div>
+                        <label asp-for="ConfirmPassword"
+                               class="text-gray-600 mb-2 block">Confirm password  <span class="text-primary">*</span></label></label
+                        ><input asp-for="ConfirmPassword"
+                                id="ConfirmPassword"
+                                type="Password"
+                                class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                placeholder="Enter Confirm password " />
+                    </div>
+                    <div>
+                        <label asp-for="FullName"
+                               class="text-gray-600 mb-2 block">
+                            Full Name
+                            <span class="text-primary">*</span>
+                        </label>
+                        <input asp-for="FullName"
+                               id="FullName"
+                               type="text"
+                               class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                               placeholder="Enter your Full Name " />
+                    </div>
+                    <div>
+                        <label asp-for="BirthDate"
+                               class="text-gray-600 mb-2 block">
+                            Birth Date
+                            <span class="text-primary">*</span>
+                        </label>
+                        <input asp-for="BirthDate"
+                               id="BirthDate"
+                               type="date"
+                               class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                               placeholder="Enter your BirhtDate " />
+                    </div>
+                    <div>
+                        <label asp-for="Address"
+                               class="text-gray-600 mb-2 block">
+                            Address
+                            <span class="text-primary">*</span>
+                        </label>
+                        <input asp-for="Address"
+                               id="Address"
+                               type="text"
+                               class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                               placeholder="Enter your address " />
+                    </div>
+                    <div>
+                        <label asp-for="Address"
+                               class="text-gray-600 mb-2 block">
+                            Gender
+                            <span class="text-primary">*</span>
+                        </label>
+                        <div class="form-check">
+                            <label class="text-gray-600 mb-2 block">
+                                <input asp-for="Gender" class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400" value="Male" type="radio" />
+                                Male
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <label class="text-gray-600 mb-2 block">
+                                <input asp-for="Gender" class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400" value="Female" type="radio" />
+                                Female
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-between mt-6">
+                    <a href="/Account/ForgotPassword" class="text-primary">Forget password</a>
+                </div>
+                <div class="mt-4">
+                    <input type="submit"
+                           value="REGISTER"
+                            class="bolck w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium"/>
+                        
+                </div>
+            </div>
+        </form>
+        <p class="mt-4 text-gray-600 text-center">
+            ِAlready have account?
+            <a asp-action="Login" class="text-primary">Login Now</a>
+        </p>
+    </div>
+</div>
+<!-- register-end -->
+
+
+
+
+
+
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

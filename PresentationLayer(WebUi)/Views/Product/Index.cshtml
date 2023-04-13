@@ -1,0 +1,166 @@
+﻿@model IEnumerable<SharedLayer.Domain.ViewModels.ProductVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- breadcrums -->
+<div class="container py-4 flex items-center gap-3">
+    <a href="/Home/Index" class="text-primary text-base">
+        <i class="fas fa-home"></i>
+    </a>
+    <span class="text-sm text-gray-400">
+        <i class="fas fa-chevron-right"></i>
+    </span>
+    <p class="text-gray-600 font-medium">Product</p>
+</div>
+<!-- breadcrums-end -->
+
+<div class="bg-white p-8 rounded-md w-full">
+    <div class="container overflow-x-auto">
+        <div>
+            <form asp-action="Search" asp-controller="Product" method="post">
+                <div class="flex justify-between flex-wrap gap-2">
+                    <div class="flex gap-0 lg:gap-4 items-center">
+                        @*<div>
+                            <label for="from"
+                                   class="bg-gray-100 p-1 md:p-2 rounded">FROM :</label>
+                            <input id="from"
+                                   type="date"
+                                   class="p-1 md:p-2 focus:outline-none bg-gray-100 rounded" />
+                        </div>
+                        <div>
+                            <label for="to"
+                                   class="bg-gray-100 p-1 md:p-2 rounded">TO :</label>
+                            <input id="to"
+                                   type="date"
+                                   class="p-1 md:p-2 focus:outline-none bg-gray-100 rounded" />
+                        </div>*@
+                    </div>
+                    <div class="flex">
+                        <input type="text"
+                               placeholder="search"
+                               class="focus:outline-none h-10 p-2 border rounded rounded-2" />
+                        <button type="submit">
+                            <i class="fa fa-search h-10 hover:bg-gray-200 p-1 md:p-2 rounded"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div id="addWrapper">
+            <a href="/Product/Create" class="add mt-8">Add Product</a>
+        </div>
+        <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+            <table class="min-w-full leading-normal">
+                <thead>
+                    <tr>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Name
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Description
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Category
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Brand
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Sale Price
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Buy Price
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Quantity
+                        </th>
+                        <th class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                            Actions
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr class="">
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0 w-10 h-10">
+                                    <img class="w-full h-full rounded-full"
+                                         src="~/img/@item.imageurl"
+                                         alt="" />
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                        @item.name
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap max-w-[200px] min-w-[150px]">
+                               @item.description
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                @item.Category.name
+                            </p>
+                        </td>
+
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                @item.Brand.name
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                $ @item.saleprice
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                              $ @item.buyprice
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <p class="text-gray-900 whitespace-no-wrap">
+                                @item.quantityavailable
+                            </p>
+                        </td>
+                        <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                            <div class="flex gap-1">
+                                <span class="relative inline-block px-6 py-3 bg-green-200 hover:bg-green-400 rounded-full font-semibold text-green-900 leading-tight">
+                                    <span aria-hidden
+                                          class="absolute inset-0 opacity-50"></span>
+                                    <a href="/Product/DetailsForAdmin/@item.id" class="relative">
+                                        Detail
+                                    </a>
+                                </span>
+                                <span class="relative inline-block px-6 py-3 font-semibold text-orange-900 bg-orange-200 hover:bg-orange-400 rounded-full leading-tight">
+                                    <span aria-hidden
+                                          class="absolute inset-0 opacity-50"></span>
+                                    <a href="/Product/Edit/@item.id" class="relative">
+                                        Edit
+                                    </a>
+                                </span>
+                                <span class="relative inline-block px-6 py-3 bg-red-200 hover:bg-red-400 rounded-full font-semibold text-red-900 leading-tight">
+                                    <span aria-hidden
+                                          class="absolute inset-0 opacity-50"></span>
+                                    <a href="/Product/Delete/@item.id" class="relative">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

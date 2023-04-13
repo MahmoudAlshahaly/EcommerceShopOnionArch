@@ -1,0 +1,69 @@
+﻿@model SharedLayer.Domain.ViewModels.LoginVM
+
+@{ ViewData["Title"] = "Login"; }
+
+<!-- login -->
+<div class="container py-16">
+    <div class="max-w-lg mx-auto shadow px-6 py-7 rounded overflow-hidden">
+        <h2 class="text-2xl text-center uppercase font-medium mb-6">
+            Login
+        </h2>
+
+        <form asp-action="Login" asp-controller="Account" method="post">
+            <div class="space-y-4">
+                <div>
+                    <label asp-for="UserName" class="text-gray-600 mb-2 block">
+                        User Name
+                        <span class="text-primary">*</span>
+                    </label><input asp-for="UserName"
+                                   id="UserName"
+                                   type="text"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter your email " />
+                </div>
+                <div>
+                    <label asp-for="Password"
+                           class="text-gray-600 mb-2 block">
+                        Password
+                        <span class="text-primary">*</span>
+                    </label><input asp-for="Password"
+                                   id="Password"
+                                   type="password"
+                                   class="inputForm block w-full border border-gray-300 px-4 py-3 text-gray-600 text-sm rounded focus:ring-0 focus:outline-none placeholder-gray-400"
+                                   placeholder="Enter your password " />
+                </div>
+            </div>
+            <div class="flex items-center justify-between mt-6">
+                <div class="flex items-center">
+                    <input asp-for="RememebrMe"
+                           type="checkbox"
+                           id="RememebrMe"
+                           class="text-primary rounded-sm cursor-pointer"
+                           style="accent-color: #fd3d57" />
+                        <label for="agreement"
+                               class="text-gray-600 ml-3 cursor-pointer">
+                            Remember me
+                        </label>
+                    </div>
+                <a asp-action="ForgotPassword" class="text-primary">Forget password</a>
+            </div>
+            <div class="mt-4">
+                <button type="submit"
+                        class="bolck w-full py-2 text-center text-white bg-primary border border-primary rounded hover:bg-transparent hover:text-primary transition uppercase font-roboto font-medium">
+                    Login
+                </button>
+            </div>
+        </form>
+        <p class="mt-4 text-gray-600 text-center">
+            Don't have an account ?
+            <a asp-action="Register" class="text-primary">Register Now</a>
+        </p>
+    </div>
+</div>
+<!-- login-end -->
+
+
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

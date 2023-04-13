@@ -1,0 +1,17 @@
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\BusinessLogicLayer.Services.deps.json
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\BusinessLogicLayer.Services.dll
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\ref\BusinessLogicLayer.Services.dll
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\BusinessLogicLayer.Services.pdb
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\DataAccessLayer.Infrastructure.dll
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\SharedLayer.Domain.dll
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\SharedLayer.Domain.pdb
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\bin\Debug\net5.0\DataAccessLayer.Infrastructure.pdb
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.csproj.AssemblyReference.cache
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.GeneratedMSBuildEditorConfig.editorconfig
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.AssemblyInfoInputs.cache
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.AssemblyInfo.cs
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.csproj.CoreCompileInputs.cache
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.csproj.CopyComplete
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.dll
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\ref\BusinessLogicLayer.Services.dll
+E:\EcommerceShop\EcommerceShop\BusinessLogicLayer(Services)\obj\Debug\net5.0\BusinessLogicLayer.Services.pdb
